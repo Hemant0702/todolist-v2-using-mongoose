@@ -1,12 +1,12 @@
 //jshint esversion:6
-
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 
 const app = express();
 
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/todolistDB",() => console.log("Connected to database"));
+mongoose.connect(process.env.url,() => console.log("Connected to database"));
 
 const itemSchema = mongoose.Schema({
     name: String
