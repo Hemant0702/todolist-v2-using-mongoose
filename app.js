@@ -4,9 +4,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const app = express();
-
+const port = process.env.PORT || 3000 ;
 const mongoose = require("mongoose");
-mongoose.connect(process.env.url,() => console.log("Connected to database"));
+const connection = mongoose.connect(process.env.url,() => console.log("Connected to database"));
 
 const itemSchema = mongoose.Schema({
     name: String
@@ -159,6 +159,6 @@ app.get("/about", function(req, res){
   res.render("about");
 });
 
-app.listen(3000, function() {
+connection.then(app.listen(port, function() {
   console.log("Server started on port 3000");
-});
+}));
